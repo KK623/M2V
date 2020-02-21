@@ -98,7 +98,7 @@ if(!rst)
 c_n<=0;
 else if(en)
 c_n<=c_n+1;
-c_n<=0;
+
 
 end
 //always @(posedge clk)
