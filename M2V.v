@@ -24,13 +24,15 @@ module M2V#(parameter DIMENSION=4, WIDTH=8)
 (clk,rst,en,
 M1,M2,M3,M4,
 V,
-MV1,MV2,MV3,MV4
-
+//MV1,MV2,MV3,MV4
+MV
     );
     input clk,rst,en;
     input [DIMENSION*WIDTH-1:0] M1,M2,M3,M4;
     input [DIMENSION*WIDTH-1:0] V;
-    output reg [WIDTH-1:0] MV1,MV2,MV3,MV4;
+    //output reg [WIDTH-1:0] MV1,MV2,MV3,MV4;
+    
+   output reg [DIMENSION*WIDTH-1:0] MV;
     
     wire [WIDTH-1:0] r1[DIMENSION+2:0];
     wire [WIDTH-1:0] r2[DIMENSION+2:0];
@@ -85,7 +87,7 @@ else if(en)
  count<=count+1;
  else 
  begin
- count=0;
+ count<=0;
  end
  end
 else 
@@ -98,22 +100,16 @@ if(!rst)
 c_n<=0;
 else if(en)
 c_n<=c_n+1;
+<<<<<<< HEAD
 
+=======
+else
+c_n<=0;
+>>>>>>> dev
 
 end
-//always @(posedge clk)
-//begin
-//if(!rst)
-//count<=0;
-//else if(en)
-//  if(count<4)
-//  count<=count+1;
-//  else
-//  count<=0;
-//else
-// count<=0;
-//end
-   always@(posedge clk)
+
+/*   always@(posedge clk)
    begin
     if(!rst )
     begin
@@ -137,19 +133,21 @@ end
     MV4<=0;
     end
     
-    end
+    end*/
     
-//    always@(posedge clk)
-//        begin
-//        if(!rst)
-//        en_n<=1;
-//        else if(count==4)
-//        en_n<=0;
-//        else
-//        if(en)
-//        en_n<=1;
-//        else 
-//        en_n<=0;
-//        end
+always@(posedge clk)
+begin
+if(!rst)
+MV<=0;
+else if(en)
+if(c_n==4)
+MV[7:0]<=wMV1;
+else if(c_n==5)
+MV[15:8]<=wMV2;
+else if(c_n==6)
+MV[23:16]<=wMV3;
+else if(c_n==7)
+MV[31:24]<=wMV4;
+end
     
 endmodule
