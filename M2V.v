@@ -100,19 +100,8 @@ if(!rst)
 c_n<=0;
 else if(en)
 c_n<=c_n+1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> dev
-=======
->>>>>>> dev
 else
 c_n<=0;
->>>>>>> dev
-
 end
 
 /*   always@(posedge clk)
